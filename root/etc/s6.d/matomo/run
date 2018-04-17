@@ -1,0 +1,9 @@
+#!/bin/bash
+if [[ ! -f /config/config.ini.php ]] && [[ -f /matomo/config/config.ini.php ]]; then
+	cp /matomo/config/config.ini.php /config/config.ini.php
+fi
+
+ln -s /config/config.ini.php /matomo/config/config.ini.php
+
+chown ${UID}:${GID} /config /matomo /var/log/php7
+s6-svc -O /etc/s6.d/matomo
