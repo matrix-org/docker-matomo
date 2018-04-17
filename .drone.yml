@@ -2,8 +2,8 @@ pipeline:
   download:
     image: docker.io/fedora
     commands:
-      - curl https://builds.matomo.org/piwik-3.4.0.tar.gz > piwik.tar.gz
-      - tar xvf piwik.tar.gz --strip 1 -C root/matomo
+      - mkdir root/matomo 
+      - curl https://builds.matomo.org/piwik-3.4.0.tar.gz | tar zxv --strip 1 -C root/matomo
   docker:
     image: docker.io/plugins/docker
     repo: docker.jcg.re/matomo
