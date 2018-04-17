@@ -5,5 +5,5 @@ fi
 
 ln -s /config/config.ini.php /matomo/config/config.ini.php
 
-chown ${UID}:${GID} /config /matomo /var/log/php7
+chown -R ${UID}:${GID} /config /matomo /var/log/php7
 s6-svc -O /etc/s6.d/matomo
