@@ -1,0 +1,2 @@
+#!/bin/sh
+su-exec ${UID}:${GID} /usr/bin/php7 /matomo/console core:archive --url=http://localhost:8888/ > /config/archive.log
