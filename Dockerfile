@@ -1,4 +1,8 @@
-FROM docker.jcg.re/base-php
+FROM docker.io/fedora:27 as loader
+RUN cd /opt \
+ && mkdir matomo \
+ && curl https://builds.matomo.org/piwik-3.4.0.tar.gz | tar zxv --strip 1 -C matomo
+FROM docker.io/matrixdotorg/base-php
 ENV APPDIR=/matomo \
     DISPLAY_ERRORS=On \
     MEMORY_LIMIT=256M
@@ -19,3 +23,4 @@ RUN apk add --no-cache \
       php7-opcache
 VOLUME /config
 COPY root /
+COPY --from=loader /opt/matomo /matomo
