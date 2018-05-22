@@ -1,4 +1,4 @@
-FROM docker.io/fedora:27 as loader
+FROM docker.io/fedora:28 as loader
 RUN cd /opt \
  && mkdir matomo \
  && curl https://builds.matomo.org/piwik-3.4.0.tar.gz | tar zxv --strip 1 -C matomo
