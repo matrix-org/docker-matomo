@@ -1,10 +1,10 @@
 FROM docker.io/fedora:28 as loader
 RUN cd /opt \
  && mkdir matomo \
- && curl https://builds.matomo.org/piwik-3.5.0.tar.gz | tar zxv --strip 1 -C matomo
+ && curl https://builds.matomo.org/piwik-3.8.1.tar.gz | tar zxv --strip 1 -C matomo
 FROM docker.io/matrixdotorg/base-php
 ENV APPDIR=/matomo \
-    DISPLAY_ERRORS=On \
+    DISPLAY_ERRORS=Off \
     MEMORY_LIMIT=256M
 RUN apk add --no-cache \
       bash \
