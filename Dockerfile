@@ -5,7 +5,8 @@ RUN cd /opt \
 FROM docker.io/matrixdotorg/base-php
 ENV APPDIR=/matomo \
     DISPLAY_ERRORS=Off \
-    MEMORY_LIMIT=256M
+    MEMORY_LIMIT=256M \
+    MATOMO_PLUGIN_DIRS=/matomo/plugins:/matomo/extraplugins
 RUN apk add --no-cache \
       bash \
       php7-pdo_mysql \
@@ -24,3 +25,4 @@ RUN apk add --no-cache \
 VOLUME /config
 COPY root /
 COPY --from=loader /opt/matomo /matomo
+RUN mkdir /matomo/extraplugins
