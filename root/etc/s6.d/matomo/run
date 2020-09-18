@@ -4,6 +4,9 @@ if [[ ! -f /config/config.ini.php ]] && [[ -f /matomo/config/config.ini.php ]]; 
 fi
 
 ln -s /config/config.ini.php /matomo/config/config.ini.php
-
+# Why would you not pull through environment variables without manually doing this
+# Urgh. Either way, ensure we set these variables in the running code.
+sed -i '/env[MATOMO_PLUGIN_DIRS]/d' /etc/php7/php-fpm.conf
+echo 'env[MATOMO_PLUGIN_DIRS] = "/matomo/plugins;plugins:/matomo/extraplugins;extraplugins"' >> /etc/php7/php-fpm.conf
 chown -R ${UID}:${GID} /config /matomo /var/log/php7
 s6-svc -O /etc/s6.d/matomo
